@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+<!-- Container Producto -->
+<div class="container">
+    <!-- Título -->
+    <h1 class="text-center text-primary my-4" th:text="${tituloProductos}"></h1>
+
+    <!-- Tabla de Productos -->
+    <table class="table table-bordered table-hover text-center">
+        <thead class="bg-primary text-white">
+        <tr>
+            <th scope="col" class="w-auto">Id Producto</th>
+            <th scope="col">Codigo EAN</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col" class="w-auto">Eliminación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto : ${MProductos}">
+            <td th:text="${producto.idProducto}"></td>
+            <td th:text="${producto.codigoEan}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.descripcion}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td th:text="${producto.stock}"></td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/eliminarProducto/{idProducto}(idProducto=${producto.idProducto})}"><i class="bi bi-trash3"></i></a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Botón Agregar Producto -->
+    <div class="row mb-3">
+        <div class="col text-center">
+            <a class="btn btn-success btn-sm" th:href="@{/formNuevoProducto}">Agregar Producto</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Imagen LINE separación de tablas -->
+<div class="text-center">
+    <img th:src="@{/img/line.png}" alt="line image" class="img-fluid" style="max-width: 50%; height: auto;">
+</div>
+
+
+
+<!-- Container Servicio -->
+<div class="container">
+    <!-- Título -->
+    <h1 class="text-center text-primary my-4" th:text="${tituloServicios}"></h1>
+
+    <!-- Tabla de Servicios -->
+    <table class="table table-bordered table-hover text-center">
+        <thead class="bg-primary text-white">
+        <tr>
+            <th scope="col" class="w-auto">Id Servicio</th>
+            <th scope="col">Codigo EAN</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Duración</th>
+            <th scope="col" class="w-auto">Eliminación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="servicio : ${MServicios}">
+            <td th:text="${servicio.idServicio}"></td>
+            <td th:text="${servicio.codigoEan}"></td>
+            <td th:text="${servicio.nombre}"></td>
+            <td th:text="${servicio.descripcion}"></td>
+            <td th:text="${servicio.precio}"></td>
+            <td th:text="${servicio.duracion} + ' min'"></td>
+            <td class="text-center">
+                <a class="btn btn-danger btn-sm" th:href="@{/eliminarServicio/{idServicio}(idServicio=${servicio.idServicio})}"><i class="bi bi-trash3"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Botón Agregar Servicio -->
+    <div class="row mb-3">
+        <div class="col text-center">
+            <a class="btn btn-success btn-sm" th:href="@{/formNuevoServicio}">Agregar Servicio</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

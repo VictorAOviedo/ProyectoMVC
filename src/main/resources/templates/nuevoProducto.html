@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Productos</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <!-- Card -->
+            <div class="card shadow">
+                <!-- Titulo -->
+                <h1 class="card-header text-center text-primary" th:text="${titulo}"></h1>
+
+                <!-- Formulario -->
+                <div class="card-body">
+                    <form th:action="@{/nuevoProducto}" th:object="${MProducto}" th:method="POST">
+
+                        <div class="form-group">
+                            <label>Codigo EAN:</label>
+                            <input type="number" name="codigo_ean" th:field="*{codigoEan}" class="form-control" placeholder="Ingrese código EAN">
+                            <div th:if="${error}" class="text-danger" th:text="${error}"></div>
+                            <div th:if="${#fields.hasErrors('codigoEan')}" class="text-danger" th:errors="*{codigoEan}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese su nombre">
+                            <div th:if="${#fields.hasErrors('nombre')}" class="text-danger" th:errors="*{nombre}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción:</label>
+                            <input type="text" name="descripcion" th:field="*{descripcion}" class="form-control" placeholder="Ingrese una descripción">
+                            <div th:if="${#fields.hasErrors('descripcion')}" class="text-danger" th:errors="*{descripcion}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Precio:</label>
+                            <input type="number" name="precio" th:field="*{precio}" class="form-control" placeholder="Ingrese el precio" step="any">
+                            <div th:if="${#fields.hasErrors('precio')}" class="text-danger" th:errors="*{precio}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock:</label>
+                            <input type="number" name="stock" th:field="*{stock}" class="form-control" placeholder="Ingrese stock">
+                            <div th:if="${#fields.hasErrors('stock')}" class="text-danger" th:errors="*{stock}"></div>
+                        </div>
+
+                        <!-- Botonera-->
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-success btn-sm" style="margin-right: 20px;">Guardar</button>
+                            <a th:href="@{/listado}" class="btn btn-danger btn-sm">Cancelar</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

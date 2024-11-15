@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <!-- Card -->
+            <div class="card shadow">
+                <h1 class="card-header text-center text-primary">Login</h1>
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label for="nombre">Usuario:</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese su usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_usuario">Contraseña:</label>
+                            <input type="password" id="password_usuario" name="passwordUsuario" class="form-control" placeholder="Ingrese su contraseña" required>
+                        </div>
+
+                        <!-- Boton ingresar -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-sm">Ingresar</button>
+                        </div>
+
+                        <!-- Mensaje de error -->
+                        <p class="text-danger text-center mt-3" th:if="${error}" th:text="${error}"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
